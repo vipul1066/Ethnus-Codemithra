@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Transaction Dashboard</title>
+</head>
+<body>
+  <header>
+    <h1>Transaction <br> Dashboard</h1>
+  </header>
+  <section>
+    <div class="top-container">
+      <form action="/" method="get">
+      <input type="text" name="search" id="" placeholder="Search">
+      <select name="month" class="dropdown" id="monthSelect" onchange="this.form.submit()">
+        <option value="1" <%= month == 1 ? 'selected' : '' %>>January</option>
+        <option value="2" <%= month == 2 ? 'selected' : '' %>>February</option>
+        <option value="3" <%= month == 3 ? 'selected' : '' %>>March</option>
+        <option value="4" <%= month == 4 ? 'selected' : '' %>>April</option>
+        <option value="5" <%= month == 5 ? 'selected' : '' %>>May</option>
+        <option value="6" <%= month == 6 ? 'selected' : '' %>>June</option>
+        <option value="7" <%= month == 7 ? 'selected' : '' %>>July</option>
+        <option value="8" <%= month == 8 ? 'selected' : '' %>>August</option>
+        <option value="9" <%= month == 9 ? 'selected' : '' %>>September</option>
+        <option value="10" <%= month == 10 ? 'selected' : '' %>>October</option>
+        <option value="11" <%= month == 11 ? 'selected' : '' %>>November</option>
+        <option value="12" <%= month == 12 ? 'selected' : '' %>>December</option>
+    </select>
+  </form>
+    </div>
+    <div class="middle-container">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Sold</th>
+          <th>Image</th>
+        </tr>
+        <% for(item of listTransactions) { %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= item.title %></td>
+          <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:2px;"> <%= item.description %></td>
+          <td><%= item.price %></td>
+          <td><%= item.category %></td>
+          <td style="text-transform:capitalize;"><%= item.sold %></td>
+          <td><a href="<%= item.image %>">Image</a></td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+    <div class="bottom-container">
+      <p>Page No: <%= page %></p>
+      <div>
+        <form id="pagination-form" action="/" method="get">
+        <input type="hidden" id="page-input" name="page" value="<%= page+1 %>">
+        <input type="hidden" id="month-input" name="month" value="<%= month %>">
+        <button class="prev-btn" type="submit" onclick="prevClick()"<%= page <= 1 ? 'disabled' : '' %> >Previous</button> - 
+        <button class="next-btn" type="submit" <%= nextPage %>>Next</button>
+      </form>
+      </div>
+      <p>Per Page: 10</p>
+    </div>
+  </section>
+  <section>
+    <div class="stats">
+      <h1>
+        Statistics - <%= monthInText %>
+      </h1>
+        <table>
+          <tr>
+            <td>Total sale</td>
+            <td><%= getStats.totalSaleAmount %></td>
+          </tr>
+          <tr>
+            <td>Total sold item</td>
+            <td><%= getStats.soldItems %></td>
+          </tr>
+          <tr>
+            <td>Total not sold item</td>
+            <td><%= getStats.notSoldItems %></td>
+          </tr>
+        </table>
+    </div>
+  </section>
+  <section class="chart-section">
+    <div class="chart-wrapper">
+      <h2 class="chart-title">Bar Chart Stats - <%= monthInText %></h2>
+      <div class="chart-container">
+        <ul class="y-axis">
+          <li>80</li>
+          <li>60</li>
+          <li>40</li>
+          <li>20</li>
+          <li>0</li>
+        </ul>
+        <ul class="chart">
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[0].count*10 %>%" title="0-100"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[1].count*10 %>%" title="101-200"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[2].count*10 %>%" title="201-300"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[3].count*10 %>%" title="301-400"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[4].count*10 %>%" title="401-500"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[5].count*10 %>%" title="501-600"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[6].count*10 %>%" title="601-700"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[7].count*10 %>%" title="701-800"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[8].count*10 %>%" title="801-900"></span>
+          </li>
+          <li>
+            <span style="height:<%= getPriceRangeDistribution[9].count*10 %>%" title="901-above"></span>
+          </li>
+        </ul>
+      </div>
+    </div>    
+  </section>
+
+  <script>
+    function prevClick(){
+    let pageNo = parseInt(document.getElementById('page-input').value)
+      if(pageNo > 1){
+        pageNo = pageNo - 2
+        document.getElementById('page-input').value = pageNo;
+        document.getElementById('pagination-form').submit(); 
+      }
+    }
+  </script>
+</body>
+</html>

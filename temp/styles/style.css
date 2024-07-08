@@ -1,0 +1,234 @@
+body{
+  margin: 0;
+  background-color: lightcyan;
+  padding-bottom: 3000px;
+}
+
+header{
+  padding:40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  font-size: 28px;
+  width: 220px;
+  height: 200px;
+  border-radius: 200px;
+  background-color: white;
+}
+
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.top-container{
+  width: 60%;
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-container input, .top-containe select{
+  background-color: rgb(248, 223, 140);
+  padding: 10px 20px;
+}
+
+.dropdown{
+  background-color: rgb(248, 223, 140);
+  width: 120px;
+}
+
+.middle-container{
+  width: 60%;
+  margin: 50px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.middle-container table{
+  border-radius: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgb(248, 223, 140);
+}
+
+.middle-container table tr{
+  border: 2px solid black;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  flex-grow: 1;
+}
+
+.middle-container table tr:first-child{
+  border: 0;
+  flex-grow: 1;
+}
+
+.middle-container table tr:last-child{
+  border: 0;
+  flex-grow: 1;
+}
+
+.middle-container table tr th{
+  flex-grow: 1;
+  border: 2px solid black;
+  border-top: 0;
+  padding: 20px;
+  align-self: center;
+}
+
+.middle-container table tr th:first-child{
+  border-left: 0;
+  border-top: 0;
+}
+
+.middle-container table tr th:last-child{
+  border-right: 0;
+  border-top: 0;
+}
+
+.middle-container table tr td{
+  border: 2px solid black;
+  border-bottom: 0;
+  padding: 20px;
+  align-self: center;
+}
+
+.middle-container table tr td:first-child{
+  border-left: 0;
+}
+
+.middle-container table tr td:last-child{
+  border-right: 0;
+}
+
+.bottom-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  align-items: center;
+}
+
+.stats{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.stats table{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+
+  border-radius: 20px;
+  width: 30%;
+  background-color: rgb(248, 223, 140);
+}
+
+.stats table tr td{
+  padding: 10px;
+}
+
+@import "compass/css3";
+
+.chart-section{
+  margin-top: 20px;
+}
+
+.chart-wrapper {
+  width: 60%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.chart-container {
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  position: relative;
+}
+
+.y-axis {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.y-axis li {
+  height: 20%;
+  position: relative;
+  bottom: 10px; /* Adjust to align with the grid lines */
+}
+
+.chart {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.1) 2%, transparent 2%);
+  background-size: 100% 50px;
+  background-position: left top;
+}
+
+.chart li {
+  position: relative;
+  display: table-cell;
+  vertical-align: bottom;
+  height: 200px;
+}
+
+.chart span {
+  margin: 0 1em;
+  display: block;
+  background: rgb(108, 229, 232);
+  animation: draw 1s ease-in-out;
+}
+
+.chart span:before {
+  font-size: 15px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  padding: 5px 1em 0;
+  display: block;
+  text-align: center;
+  content: attr(title);
+  word-wrap: break-word;
+  transform: rotate(-45deg); /* Rotate the text */
+  transform-origin: top right; /* Adjust the origin for rotation */
+}
+
+@keyframes draw {
+  0% { height: 0; }
+}

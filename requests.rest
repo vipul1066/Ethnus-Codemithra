@@ -1,0 +1,11 @@
+# GET http://localhost:3000/getCombinedData?month=6
+
+# GET http://localhost:3000/getCategoryDistribution?month=12
+
+# GET http://localhost:3000/getPriceRangeDistribution?month=12
+
+
+# GET http://localhost:3000/getStats?month=6
+
+# [CREATE AN API TO LIST THE ALL TRANSACTIONS]
+GET http://localhost:3000/listTransactions?page=1&limit=10&month=1
